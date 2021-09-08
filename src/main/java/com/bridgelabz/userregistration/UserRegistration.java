@@ -22,7 +22,7 @@ public class UserRegistration {
 	}
 	
 	public boolean validatePhoneNumber(String email) {
-		String regex = "[1-9]{2}[\\s][1-9][0-9]{9}";
+		String regex = "[0-9][1-9][\\s][1-9][0-9]{9}";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(email);
 		return matcher.matches();
