@@ -19,4 +19,17 @@ public class UserRegistrationTest {
 		Assert.assertFalse(isValid);
 	}
 
+	@Test
+	public void givenLastName_WhenProper_ShouldReturnTrue() {
+		UserRegistration userRegistration = new UserRegistration();
+		boolean isValid = userRegistration.validateName("Hebbar");
+		Assert.assertTrue(isValid);
+	}
+	
+	@Test
+	public void givenLastName_WhenProper_ShouldReturnFalse() {
+		UserRegistration userRegistration = new UserRegistration();
+		boolean isValid = userRegistration.validateName("He");
+		Assert.assertFalse(isValid);
+	}
 }
