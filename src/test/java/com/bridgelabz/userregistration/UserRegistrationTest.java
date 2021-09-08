@@ -60,4 +60,18 @@ public class UserRegistrationTest {
 		boolean isValid = userRegistration.validatePhoneNumber("9988776655");
 		Assert.assertFalse(isValid);
 	}
+	
+	@Test
+	public void givenPassword_WhenProper_ShouldReturnTrue() {
+		UserRegistration userRegistration = new UserRegistration();
+		boolean isValid = userRegistration.validatePassword("abcD1!efg");
+		Assert.assertTrue(isValid);
+	}
+	
+	@Test
+	public void givenPassword_WhenNotProper_ShouldReturnFalse() {
+		UserRegistration userRegistration = new UserRegistration();
+		boolean isValid = userRegistration.validatePhoneNumber("abcdefghijk");
+		Assert.assertFalse(isValid);
+	}
 }
