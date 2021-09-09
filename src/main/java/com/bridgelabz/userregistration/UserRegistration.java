@@ -21,20 +21,19 @@ public class UserRegistration {
 		
 	}
 	
-	public boolean validatePhoneNumber(String email) {
+	public boolean validatePhoneNumber(String phoneNumber) {
 		String regex = "[0-9][1-9][\\s][1-9][0-9]{9}";
 		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(email);
+		Matcher matcher = pattern.matcher(phoneNumber);
 		return matcher.matches();
 		
 	}
 	
-	public boolean validatePassword(String email) {
-		String regex = "(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])(?=.*[!@#$%^&*\\-+=]).{8,}";
+	public boolean validatePassword(String password) {
+		String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})[0-9a-zA-Z]*[^0-9a-zA-Z][0-9a-zA-Z]*$";
 		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(email);
-		return matcher.matches();
-		
+		Matcher matcher = pattern.matcher(password);
+		return matcher.matches();	
 	}
 
 }
