@@ -33,8 +33,7 @@ public class UserRegistration {
 		String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})[0-9a-zA-Z]*[^0-9a-zA-Z][0-9a-zA-Z]*$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(password);
-		return matcher.matches();
-		
+		return matcher.matches();	
 	}
 
 }
