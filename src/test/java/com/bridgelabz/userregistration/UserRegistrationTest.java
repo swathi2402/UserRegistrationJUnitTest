@@ -141,6 +141,28 @@ public class UserRegistrationTest {
 	}
 	
 	@Test
+	public void givenPhoneNumber_WhenNull_ShouldReturnFalse() throws UserValidateException {
+		UserRegistration userRegistration = new UserRegistration();
+		try {
+			userRegistration.validatePhoneNumber(null);
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_NULL, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void givenPhoneNumber_WhenEmpty_ShouldReturnFalse() throws UserValidateException {
+		UserRegistration userRegistration = new UserRegistration();
+		try {
+			userRegistration.validatePhoneNumber("");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_EMPTY, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
 	public void givenPassword_WhenProper_ShouldReturnTrue() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
 		boolean isValid = userRegistration.validatePassword("abcDmmm$m1");
