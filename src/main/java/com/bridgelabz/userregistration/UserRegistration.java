@@ -34,7 +34,8 @@ public class UserRegistration {
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(email);
 			if (!matcher.matches()) {
-				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID, "Email ID is invalid");
+				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID,
+						"Email ID is invalid");
 			} else
 				return matcher.matches();
 
@@ -53,7 +54,8 @@ public class UserRegistration {
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(phoneNumber);
 			if (!matcher.matches()) {
-				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID, "Phone number is invalid");
+				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID,
+						"Phone number is invalid");
 			} else
 				return matcher.matches();
 		} catch (NullPointerException e) {
@@ -71,7 +73,12 @@ public class UserRegistration {
 			String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})[0-9a-zA-Z]*[^0-9a-zA-Z][0-9a-zA-Z]*$";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(password);
-			return matcher.matches();
+			if (!matcher.matches()) {
+				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID,
+						"Phone number is invalid");
+			} else
+				return matcher.matches();
+			
 		} catch (NullPointerException e) {
 			throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_NULL,
 					"Password can not be null");

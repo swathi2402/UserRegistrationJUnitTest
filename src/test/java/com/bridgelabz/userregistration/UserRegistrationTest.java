@@ -208,30 +208,46 @@ public class UserRegistrationTest {
 	@Test
 	public void givenPassword_WhenLessCharecter_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validatePassword("aB!1d");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validatePassword("aB!1d");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenPassword_WithoutCapitalLetter_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validatePassword("abcd1efg");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validatePassword("abcd1efg");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	
 	public void givenPassword_WithoutDigit_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validatePassword("abcdefgD$ijk");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validatePassword("abcdefgD$ijk");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenPassword_WithoutSpecialCharecter_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validatePassword("abcdefDghijk");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validatePassword("abcdefDghijk");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
