@@ -106,8 +106,12 @@ public class UserRegistrationTest {
 	@Test
 	public void givenEmail_WhenNotProper_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validateEmail("abc@abc@gmail.com");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validateEmail("abc@abc@gmail.com");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
