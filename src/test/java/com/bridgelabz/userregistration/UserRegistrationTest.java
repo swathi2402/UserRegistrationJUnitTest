@@ -15,29 +15,45 @@ public class UserRegistrationTest {
 	@Test
 	public void givenFirstName_WhenFirstLetterSmall_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validateName("swathi");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validateName("swathi");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenFirstName_WithEmptyString_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validateName(" ");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validateName(" ");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenFirstName_WithNumbers_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validateName("Swathi1");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validateName("swathi1");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenFirstName_WithSpecialCharecters_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validateName("Swathi$");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validateName("swathi$");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Test
@@ -72,8 +88,12 @@ public class UserRegistrationTest {
 	@Test
 	public void givenLastName_WhenSizeSmall_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validateName("He");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validateName("He");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test

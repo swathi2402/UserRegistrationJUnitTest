@@ -13,6 +13,10 @@ public class UserRegistration {
 			String regex = "([A-Z][a-zA-Z]{2,})";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(name);
+			if(!matcher.matches()) {
+				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID,
+						"Name is invalid");
+			}
 			return matcher.matches();
 
 		} catch (NullPointerException e) {
