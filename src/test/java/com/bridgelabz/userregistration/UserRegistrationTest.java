@@ -197,5 +197,27 @@ public class UserRegistrationTest {
 		boolean isValid = userRegistration.validatePassword("abcdefDghijk");
 		Assert.assertFalse(isValid);
 	}
+	
+	@Test
+	public void givenPassword_WhenNull_ShouldReturnFalse() throws UserValidateException {
+		UserRegistration userRegistration = new UserRegistration();
+		try {
+			userRegistration.validatePassword(null);
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_NULL, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void givenPassword_WhenEmpty_ShouldReturnFalse() throws UserValidateException {
+		UserRegistration userRegistration = new UserRegistration();
+		try {
+			userRegistration.validatePassword("");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_EMPTY, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
 
 }
