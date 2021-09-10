@@ -146,22 +146,34 @@ public class UserRegistrationTest {
 	@Test
 	public void givenPhoneNumber_WhenOnlyTenDigits_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validatePhoneNumber("9988776655");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validateEmail("9988776655");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenPhoneNumber_WhenSpecialCharecterIncluded_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validatePhoneNumber("91 #988776655");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validateEmail("91 #988776655");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test
 	public void givenPhoneNumber_WhenCountryCodeMoreThanTwoDigit_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validatePhoneNumber("911 9988776655");
-		Assert.assertFalse(isValid);
+		try {
+			userRegistration.validateEmail("911 9988776655");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	@Test

@@ -52,7 +52,10 @@ public class UserRegistration {
 			String regex = "[0-9][1-9][\\s][1-9][0-9]{9}";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(phoneNumber);
-			return matcher.matches();
+			if (!matcher.matches()) {
+				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID, "Phone number is invalid");
+			} else
+				return matcher.matches();
 		} catch (NullPointerException e) {
 			throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_NULL,
 					"Phone Number can not be null");
