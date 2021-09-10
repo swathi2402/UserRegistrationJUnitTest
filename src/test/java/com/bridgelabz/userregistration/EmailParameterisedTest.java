@@ -33,7 +33,7 @@ public class EmailParameterisedTest {
 	}
 
 	@Test
-	public void givenEmail_ShouldReturnAppropriateResult_ToPassParameterisedTestCase() {
+	public void givenEmail_ShouldReturnAppropriateResult_ToPassParameterisedTestCase() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
 		boolean isValid = userRegistration.validateEmail(this.email);
 		Assert.assertEquals(this.expectedResult, isValid);
