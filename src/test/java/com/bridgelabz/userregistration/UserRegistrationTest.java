@@ -90,6 +90,27 @@ public class UserRegistrationTest {
 		Assert.assertFalse(isValid);
 	}
 	
+	@Test
+	public void givenEmail_WhenNull_ShouldReturnFalse() throws UserValidateException {
+		UserRegistration userRegistration = new UserRegistration();
+		try {
+			userRegistration.validateEmail(null);
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_NULL, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void givenEmail_WhenEmpty_ShouldReturnFalse() throws UserValidateException {
+		UserRegistration userRegistration = new UserRegistration();
+		try {
+			userRegistration.validateEmail("");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_EMPTY, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
 	
 	@Test
 	public void givenPhoneNumber_WhenProper_ShouldReturnTrue() throws UserValidateException {
