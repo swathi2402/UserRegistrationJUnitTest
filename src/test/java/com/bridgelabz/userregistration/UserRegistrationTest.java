@@ -48,6 +48,28 @@ public class UserRegistrationTest {
 	}
 	
 	@Test
+	public void givenLastName_WhenNull_ShouldReturnFalse() throws UserValidateException {
+		UserRegistration userRegistration = new UserRegistration();
+		try {
+			userRegistration.validateName(null);
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_NULL, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
+	public void givenLastName_WhenEmpty_ShouldReturnFalse() throws UserValidateException {
+		UserRegistration userRegistration = new UserRegistration();
+		try {
+			userRegistration.validateName("");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_EMPTY, e.type);
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Test
 	public void givenLastName_WhenSizeSmall_ShouldReturnFalse() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
 		boolean isValid = userRegistration.validateName("He");
