@@ -6,14 +6,14 @@ import org.junit.Test;
 public class UserRegistrationTest {
 
 	@Test
-	public void givenFirstName_WhenProper_ShouldReturnTrue() throws UserValidateException {
+	public void givenFirstName_WhenProper_ShouldReturnTrue() {
 		UserRegistration userRegistration = new UserRegistration();
 		boolean isValid = userRegistration.validateName("Swathi");
 		Assert.assertTrue(isValid);
 	}
 
 	@Test
-	public void givenFirstName_WhenFirstLetterSmall_ShouldReturnFalse() throws UserValidateException {
+	public void givenFirstName_WhenFirstLetterSmall_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateName("swathi");
@@ -24,7 +24,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenFirstName_WithEmptyString_ShouldReturnFalse() throws UserValidateException {
+	public void givenFirstName_WithEmptyString_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateName(" ");
@@ -35,7 +35,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenFirstName_WithNumbers_ShouldReturnFalse() throws UserValidateException {
+	public void givenFirstName_WithNumbers_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateName("swathi1");
@@ -46,7 +46,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenFirstName_WithSpecialCharecters_ShouldReturnFalse() throws UserValidateException {
+	public void givenFirstName_WithSpecialCharecters_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateName("swathi$");
@@ -57,14 +57,14 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenLastName_WhenProper_ShouldReturnTrue() throws UserValidateException {
+	public void givenLastName_WhenProper_ShouldReturnTrue() {
 		UserRegistration userRegistration = new UserRegistration();
 		boolean isValid = userRegistration.validateName("Hebbar");
 		Assert.assertTrue(isValid);
 	}
 
 	@Test
-	public void givenLastName_WhenNull_ShouldReturnFalse() throws UserValidateException {
+	public void givenLastName_WhenNull_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateName(null);
@@ -75,7 +75,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenLastName_WhenEmpty_ShouldReturnFalse() throws UserValidateException {
+	public void givenLastName_WhenEmpty_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateName("");
@@ -86,7 +86,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenLastName_WhenSizeSmall_ShouldReturnFalse() throws UserValidateException {
+	public void givenLastName_WhenSizeSmall_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateName("He");
@@ -97,14 +97,14 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenEmail_WhenProper_ShouldReturnTrue() throws UserValidateException {
+	public void givenEmail_WhenProper_ShouldReturnTrue() {
 		UserRegistration userRegistration = new UserRegistration();
 		boolean isValid = userRegistration.validateEmail("abc@gmail.com.co");
 		Assert.assertTrue(isValid);
 	}
 
 	@Test
-	public void givenEmail_WhenNotProper_ShouldReturnFalse() throws UserValidateException {
+	public void givenEmail_WhenNotProper_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateEmail("abc@abc@gmail.com");
@@ -115,7 +115,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenEmail_WhenNull_ShouldReturnFalse() throws UserValidateException {
+	public void givenEmail_WhenNull_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateEmail(null);
@@ -126,7 +126,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenEmail_WhenEmpty_ShouldReturnFalse() throws UserValidateException {
+	public void givenEmail_WhenEmpty_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateEmail("");
@@ -137,14 +137,14 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenPhoneNumber_WhenProper_ShouldReturnTrue() throws UserValidateException {
+	public void givenPhoneNumber_WhenProper_ShouldReturnTrue() {
 		UserRegistration userRegistration = new UserRegistration();
 		boolean isValid = userRegistration.validatePhoneNumber("91 9988776655");
 		Assert.assertTrue(isValid);
 	}
 
 	@Test
-	public void givenPhoneNumber_WhenOnlyTenDigits_ShouldReturnFalse() throws UserValidateException {
+	public void givenPhoneNumber_WhenOnlyTenDigits_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateEmail("9988776655");
@@ -155,7 +155,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenPhoneNumber_WhenSpecialCharecterIncluded_ShouldReturnFalse() throws UserValidateException {
+	public void givenPhoneNumber_WhenSpecialCharecterIncluded_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateEmail("91 #988776655");
@@ -166,7 +166,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenPhoneNumber_WhenCountryCodeMoreThanTwoDigit_ShouldReturnFalse() throws UserValidateException {
+	public void givenPhoneNumber_WhenCountryCodeMoreThanTwoDigit_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validateEmail("911 9988776655");
@@ -177,7 +177,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenPhoneNumber_WhenNull_ShouldReturnFalse() throws UserValidateException {
+	public void givenPhoneNumber_WhenNull_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validatePhoneNumber(null);
@@ -188,7 +188,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenPhoneNumber_WhenEmpty_ShouldReturnFalse() throws UserValidateException {
+	public void givenPhoneNumber_WhenEmpty_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validatePhoneNumber("");
@@ -199,14 +199,14 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenPassword_WhenProper_ShouldReturnTrue() throws UserValidateException {
+	public void givenPassword_WhenProper_ShouldReturnTrue() {
 		UserRegistration userRegistration = new UserRegistration();
 		boolean isValid = userRegistration.validatePassword("abcDmmm$m1");
 		Assert.assertTrue(isValid);
 	}
 
 	@Test
-	public void givenPassword_WhenLessCharecter_ShouldReturnFalse() throws UserValidateException {
+	public void givenPassword_WhenLessCharecter_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validatePassword("aB!1d");
@@ -217,7 +217,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenPassword_WithoutCapitalLetter_ShouldReturnFalse() throws UserValidateException {
+	public void givenPassword_WithoutCapitalLetter_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validatePassword("abcd1efg");
@@ -229,7 +229,7 @@ public class UserRegistrationTest {
 
 	@Test
 
-	public void givenPassword_WithoutDigit_ShouldReturnFalse() throws UserValidateException {
+	public void givenPassword_WithoutDigit_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validatePassword("abcdefgD$ijk");
@@ -240,7 +240,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenPassword_WithoutSpecialCharecter_ShouldReturnFalse() throws UserValidateException {
+	public void givenPassword_WithoutSpecialCharecter_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validatePassword("abcdefDghijk");
@@ -251,7 +251,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenPassword_WhenNull_ShouldReturnFalse() throws UserValidateException {
+	public void givenPassword_WhenNull_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validatePassword(null);
@@ -262,7 +262,7 @@ public class UserRegistrationTest {
 	}
 
 	@Test
-	public void givenPassword_WhenEmpty_ShouldReturnFalse() throws UserValidateException {
+	public void givenPassword_WhenEmpty_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
 			userRegistration.validatePassword("");
