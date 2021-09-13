@@ -9,9 +9,8 @@ interface RegexFunction {
 }
 
 public class UserRegistration {
-	
-	RegexFunction validateName = (String name) ->{
-//	public boolean validateName(String name) throws UserValidateException {
+
+	RegexFunction validateName = (String name) -> {
 		try {
 			if (name.length() == 0)
 				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_EMPTY,
@@ -32,7 +31,7 @@ public class UserRegistration {
 
 	};
 
-	public boolean validateEmail(String email) throws UserValidateException {
+	RegexFunction validateEmail = (String email) -> {
 		try {
 			if (email.length() == 0)
 				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_EMPTY,
@@ -46,15 +45,15 @@ public class UserRegistration {
 				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID,
 						"Email ID is invalid");
 			} else
-				return matcher.matches();
+				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_VALID, "Email ID is valid");
 
 		} catch (NullPointerException e) {
 			throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_NULL,
 					"Email ID can not be null");
 		}
-	}
+	};
 
-	public boolean validatePhoneNumber(String phoneNumber) throws UserValidateException {
+	RegexFunction validatePhoneNumber = (String phoneNumber) -> {
 		try {
 			if (phoneNumber.length() == 0)
 				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_EMPTY,
@@ -68,15 +67,16 @@ public class UserRegistration {
 				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID,
 						"Phone number is invalid");
 			} else
-				return matcher.matches();
+				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_VALID,
+						"Phone number is valid");
 		} catch (NullPointerException e) {
 			throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_NULL,
 					"Phone Number can not be null");
 		}
 
-	}
+	};
 
-	public boolean validatePassword(String password) throws UserValidateException {
+	RegexFunction validatePassword = (String password) -> {
 		try {
 			if (password.length() == 0)
 				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_EMPTY,
@@ -88,14 +88,14 @@ public class UserRegistration {
 
 			if (!matcher.matches()) {
 				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID,
-						"Phone number is invalid");
+						"Password is invalid");
 			} else
-				return matcher.matches();
+				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_VALID, "Password is valid");
 
 		} catch (NullPointerException e) {
 			throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_NULL,
 					"Password can not be null");
 		}
-	}
+	};
 
 }

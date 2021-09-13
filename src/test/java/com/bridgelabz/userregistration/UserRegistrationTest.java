@@ -107,15 +107,19 @@ public class UserRegistrationTest {
 	@Test
 	public void givenEmail_WhenProper_ShouldReturnTrue() {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validateEmail("abc@gmail.com.co");
-		Assert.assertTrue(isValid);
+		try {
+			userRegistration.validateEmail.validateRegex("abc@gmail.com.co");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_VALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Test
 	public void givenEmail_WhenNotProper_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateEmail("abc@abc@gmail.com");
+			userRegistration.validateEmail.validateRegex("abc@abc@gmail.com");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -126,7 +130,7 @@ public class UserRegistrationTest {
 	public void givenEmail_WhenNull_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateEmail(null);
+			userRegistration.validateEmail.validateRegex(null);
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_NULL, e.type);
 			System.out.println(e.getMessage());
@@ -137,7 +141,7 @@ public class UserRegistrationTest {
 	public void givenEmail_WhenEmpty_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateEmail("");
+			userRegistration.validateEmail.validateRegex("");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_EMPTY, e.type);
 			System.out.println(e.getMessage());
@@ -147,15 +151,19 @@ public class UserRegistrationTest {
 	@Test
 	public void givenPhoneNumber_WhenProper_ShouldReturnTrue() {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validatePhoneNumber("91 9988776655");
-		Assert.assertTrue(isValid);
+		try {
+			userRegistration.validatePhoneNumber.validateRegex("91 9988776655");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_VALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Test
 	public void givenPhoneNumber_WhenOnlyTenDigits_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateEmail("9988776655");
+			userRegistration.validatePhoneNumber.validateRegex("9988776655");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -166,7 +174,7 @@ public class UserRegistrationTest {
 	public void givenPhoneNumber_WhenSpecialCharecterIncluded_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateEmail("91 #988776655");
+			userRegistration.validatePhoneNumber.validateRegex("91 #988776655");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -177,7 +185,7 @@ public class UserRegistrationTest {
 	public void givenPhoneNumber_WhenCountryCodeMoreThanTwoDigit_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateEmail("911 9988776655");
+			userRegistration.validatePhoneNumber.validateRegex("911 9988776655");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -188,7 +196,7 @@ public class UserRegistrationTest {
 	public void givenPhoneNumber_WhenNull_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validatePhoneNumber(null);
+			userRegistration.validatePhoneNumber.validateRegex(null);
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_NULL, e.type);
 			System.out.println(e.getMessage());
@@ -199,7 +207,7 @@ public class UserRegistrationTest {
 	public void givenPhoneNumber_WhenEmpty_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validatePhoneNumber("");
+			userRegistration.validatePhoneNumber.validateRegex("");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_EMPTY, e.type);
 			System.out.println(e.getMessage());
@@ -209,15 +217,19 @@ public class UserRegistrationTest {
 	@Test
 	public void givenPassword_WhenProper_ShouldReturnTrue() {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validatePassword("abcDmmm$m1");
-		Assert.assertTrue(isValid);
+		try {
+			userRegistration.validatePassword.validateRegex("abcDmmm$m1");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_VALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Test
 	public void givenPassword_WhenLessCharecter_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validatePassword("aB!1d");
+			userRegistration.validatePassword.validateRegex("aB!1d");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -228,7 +240,7 @@ public class UserRegistrationTest {
 	public void givenPassword_WithoutCapitalLetter_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validatePassword("abcd1efg");
+			userRegistration.validatePassword.validateRegex("abcd1efg");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -240,7 +252,7 @@ public class UserRegistrationTest {
 	public void givenPassword_WithoutDigit_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validatePassword("abcdefgD$ijk");
+			userRegistration.validatePassword.validateRegex("abcdefgD$ijk");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -251,7 +263,7 @@ public class UserRegistrationTest {
 	public void givenPassword_WithoutSpecialCharecter_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validatePassword("abcdefDghijk");
+			userRegistration.validatePassword.validateRegex("abcdefDghijk");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -262,7 +274,7 @@ public class UserRegistrationTest {
 	public void givenPassword_WhenNull_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validatePassword(null);
+			userRegistration.validatePassword.validateRegex(null);
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_NULL, e.type);
 			System.out.println(e.getMessage());
@@ -273,7 +285,7 @@ public class UserRegistrationTest {
 	public void givenPassword_WhenEmpty_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validatePassword("");
+			userRegistration.validatePassword.validateRegex("");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_EMPTY, e.type);
 			System.out.println(e.getMessage());
