@@ -35,7 +35,11 @@ public class EmailParameterisedTest {
 	@Test
 	public void givenEmail_ShouldReturnAppropriateResult_ToPassParameterisedTestCase() throws UserValidateException {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validateEmail(this.email);
-		Assert.assertEquals(this.expectedResult, isValid);
+		try {
+			userRegistration.validateEmail.validateRegex(this.email);
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_VALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 }
