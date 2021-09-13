@@ -3,9 +3,15 @@ package com.bridgelabz.userregistration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UserRegistration {
+@FunctionalInterface
+interface RegexFunction {
+	void validateRegex(String string);
+}
 
-	public boolean validateName(String name) throws UserValidateException {
+public class UserRegistration {
+	
+	RegexFunction validateName = (String name) ->{
+//	public boolean validateName(String name) throws UserValidateException {
 		try {
 			if (name.length() == 0)
 				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_EMPTY,
@@ -18,13 +24,13 @@ public class UserRegistration {
 			if (!matcher.matches()) {
 				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_INVALID, "Name is invalid");
 			} else
-				return matcher.matches();
+				throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_VALID, "Name is valid");
 
 		} catch (NullPointerException e) {
 			throw new UserValidateException(UserValidateException.ExceptionType.ENTERED_NULL, "Name can not be null");
 		}
 
-	}
+	};
 
 	public boolean validateEmail(String email) throws UserValidateException {
 		try {

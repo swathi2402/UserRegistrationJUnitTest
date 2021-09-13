@@ -8,15 +8,19 @@ public class UserRegistrationTest {
 	@Test
 	public void givenFirstName_WhenProper_ShouldReturnTrue() {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validateName("Swathi");
-		Assert.assertTrue(isValid);
+		try {
+			userRegistration.validateName.validateRegex("Swathi");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_VALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Test
 	public void givenFirstName_WhenFirstLetterSmall_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateName("swathi");
+			userRegistration.validateName.validateRegex("swathi");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -27,7 +31,7 @@ public class UserRegistrationTest {
 	public void givenFirstName_WithEmptyString_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateName(" ");
+			userRegistration.validateName.validateRegex(" ");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -38,7 +42,7 @@ public class UserRegistrationTest {
 	public void givenFirstName_WithNumbers_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateName("swathi1");
+			userRegistration.validateName.validateRegex("swathi1");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -49,7 +53,7 @@ public class UserRegistrationTest {
 	public void givenFirstName_WithSpecialCharecters_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateName("swathi$");
+			userRegistration.validateName.validateRegex("swathi$");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
@@ -59,15 +63,19 @@ public class UserRegistrationTest {
 	@Test
 	public void givenLastName_WhenProper_ShouldReturnTrue() {
 		UserRegistration userRegistration = new UserRegistration();
-		boolean isValid = userRegistration.validateName("Hebbar");
-		Assert.assertTrue(isValid);
+		try {
+			userRegistration.validateName.validateRegex("Hebbar");
+		} catch (UserValidateException e) {
+			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_VALID, e.type);
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Test
 	public void givenLastName_WhenNull_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateName(null);
+			userRegistration.validateName.validateRegex(null);
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_NULL, e.type);
 			System.out.println(e.getMessage());
@@ -78,7 +86,7 @@ public class UserRegistrationTest {
 	public void givenLastName_WhenEmpty_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateName("");
+			userRegistration.validateName.validateRegex("");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_EMPTY, e.type);
 			System.out.println(e.getMessage());
@@ -89,7 +97,7 @@ public class UserRegistrationTest {
 	public void givenLastName_WhenSizeSmall_ShouldReturnFalse() {
 		UserRegistration userRegistration = new UserRegistration();
 		try {
-			userRegistration.validateName("He");
+			userRegistration.validateName.validateRegex("He");
 		} catch (UserValidateException e) {
 			Assert.assertEquals(UserValidateException.ExceptionType.ENTERED_INVALID, e.type);
 			System.out.println(e.getMessage());
